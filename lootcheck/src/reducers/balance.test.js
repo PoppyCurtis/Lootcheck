@@ -1,16 +1,29 @@
 import balanceReducer from './balance';
+import balanceReducer2 from './balance';
 import * as constants from '../actions/constants';
 
+
 describe('balanceReducer', () => {
-    it('sets a balance', () => {
+
+    describe('when initializing', () => {
+        it('sets a balance', () => {
+            const balance = 10;
+    
+            //balanceReducer has 2 params -> first represents a previous state.
+            //param 2 pass in an object containing data
+            expect(balanceReducer(undefined, {type: constants.SET_BALANCE, balance}))
+                .toEqual(balance);
+    
+        });
+    
+        describe('then re-initializing', () => {
+            it('reads balance from cookies', () => {
+                expect(balanceReducer2(undefined, {})).toEqual(balance);
+            });
+        });
         const balance = 10;
-
-        //balanceReducer has 2 params -> first represents a previous state.
-        //param 2 pass in an object containing data
-        expect(balanceReducer(undefined, {type: constants.SET_BALANCE, balance}))
-            .toEqual(balance);
-
     });
+  
 
     it('deposits into the balance', () => {
         const deposit  = 10;
